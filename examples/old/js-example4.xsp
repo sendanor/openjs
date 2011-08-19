@@ -1,0 +1,37 @@
+#!/usr/local/bin/js-cgi
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsp="http://www.sendanor.org/xmlns/xsp"
+      xml:lang="en">
+<head>
+	<title>XSP example using JavaScript</title>
+</head>
+<body>
+	
+	<!-- Set global variable -->
+	<?xsp
+		var page = system.input.page;
+	?>
+	
+	<!-- First content block -->
+	<div id="content" xsp:if="page=='index'">
+		<h1>XSP example 4 -- Index</h1>
+		<p><?xsp document.write("Page is " + page); ?></p>
+	</div>
+	
+	<!-- Second content block -->
+	<div id="content" xsp:if="page=='links'">
+		<h1>XSP example 4 -- Links</h1>
+		<p><?xsp document.write("Page is " + page); ?></p>
+		<p><?xsp document.write(1234==1235); ?></p>
+	</div>
+	
+	<xsp:div xsp:if="page!='footer'">
+		<div id="footer">Footer</div>
+	</xsp:div>
+	
+</body>
+</html>

@@ -1,0 +1,13 @@
+=== Download ===
+
+There is no official releases at the moment. We recommend to use [[https://svn.sendanor.fi/svn/openjs/trunk/|the subversion repository]].
+
+=== Licence ===
+
+OpenJS is licensed under [[https://svn.sendanor.fi/svn/openjs/trunk/COPYING|BSD-style license]].
+
+=== Subversion ===
+
+Check out latest development source code:
+
+ svn checkout https://svn.sendanor.fi/svn/openjs/trunk openjs

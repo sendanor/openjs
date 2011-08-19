@@ -1,0 +1,93 @@
+#!/bin/sh
+set -e
+prefix=default
+bindir=default
+sbindir=default
+libdir=default
+includedir=default
+debug=no
+
+for arg in "$@"; do
+case "$arg" in
+--prefix=*) prefix="${arg#--prefix=}"; ;;
+--bindir=*) bindir="${arg#--bindir=}"; ;;
+--sbindir=*) sbindir="${arg#--sbindir=}"; ;;
+--libdir=*) libdir="${arg#--libdir=}"; ;;
+--includedir=*) includedir="${arg#--includedir=}"; ;;
+--enable-debug*) debug=yes; ;;
+--disable-debug*) debug=no; ;;
+--help)
+	echo './configure [ARGS]'
+	echo '  --prefix=DIR      Software install prefix'
+	echo '  --bindir=DIR      Software binary path'
+	echo '  --sbindir=DIR     Software admin binary path'
+	echo '  --libdir=DIR      Library install path'
+	echo '  --includedir=DIR  Include path for headers'
+	echo '  --enable-debug    Enable slow debug code'
+	echo '  --disable-debug   No extra debug code'
+	echo
+	exit 0
+;;
+esac
+done
+
+if test "x$prefix" = xdefault; then
+	prefix="/usr/local"
+fi
+
+if test "x$bindir" = xdefault; then
+	bindir="$prefix/bin"
+fi
+
+if test "x$sbindir" = xdefault; then
+	sbindir="$prefix/sbin"
+fi
+
+if test "x$libdir" = xdefault; then
+	libdir="$prefix/lib"
+fi
+
+if test "x$includedir" = xdefault; then
+	includedir="$prefix/include"
+fi
+
+echo "Configurations:"
+echo "  prefix = $prefix"
+echo "  libdir = $libdir"
+echo "  debug = $debug"
+
+
+# Build config.h
+echo -n "Building config.h ... "
+if test -f config.h; then
+	rm config.h
+fi
+touch config.h
+echo '#define DEFAULT_LOCALES "en_US.UTF8\nen_GB.UTF8\nfi_FI.UTF8\n.UTF8\nen_US.iso88591\nen_GB.iso88591\nfi_FI.iso88591\n.iso88591\n"' >> config.h
+echo '#define EXTENSION_DIR "openjs"' >> config.h
+echo '#define PLUGIN_PATH "'"$libdir"'"' >> config.h
+if test "x$debug" = xyes; then
+	echo '#define DEBUG 1' >> config.h
+fi
+echo '#define EXTENSION_SUFFIX "'".so"'"' >> config.h
+echo '#define OPENJS_VERSION "'"$(cat VERSION|tr -d '\n')"'"' >> config.h
+echo "Ready."
+
+
+# Build Makefile.config
+echo -n 'Building Makefile.config ... '
+if test -f Makefile.config; then
+	rm Makefile.config
+fi
+touch Makefile.config
+echo 'PREFIX='"$prefix" >> Makefile.config
+echo 'LIBDIR='"$libdir" >> Makefile.config
+echo 'BINDIR='"$bindir" >> Makefile.config
+echo 'SBINDIR='"$sbindir" >> Makefile.config
+echo 'INCLUDEDIR='"$includedir/openjs" >> Makefile.config
+echo 'EXTENSION_SUFFIX='".so" >> Makefile.config
+echo "Ready."
+
+
+echo "Configure finished."
+# EOF

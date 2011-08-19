@@ -1,0 +1,13 @@
+=== Download ===
+
+There is no official releases at the moment. We recommend to use [[https://svn.sendanor.fi/svn/openjs/tools/wikidoc/trunk/|the subversion repository]].
+
+=== Licence ===
+
+Wikidoc is licensed by [[https://svn.sendanor.fi/svn/openjs/tools/wikidoc/trunk/COPYING|GPL v2]].
+
+=== Subversion ===
+
+Check out latest development source code:
+
+ svn checkout https://svn.sendanor.fi/svn/openjs/tools/wikidoc/trunk/ wikidoc

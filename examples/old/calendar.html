@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsp="http://www.sendanor.org/xmlns/xsp"
+      xml:lang="en">
+<head>
+	<title>Calendar Example — XSP JavaScript</title>
+	<link rel="stylesheet" href="calendar.css" type="text/css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="Rating" content="General" />
+	<meta name="Pragma" content="no-cache" />
+	<script src="lib/prototype.js" type="text/javascript"><!-- Hack --></script>
+	<script src="lib/scriptaculous/scriptaculous.js" type="text/javascript"><!-- Hack --></script>
+	<script src="calendar_client.js" type="text/javascript"><!-- Hack --></script>
+</head>
+<body>
+
+<div id="header">
+	<h1>Calendar Example</h1>
+</div>
+
+<div id="content">
+
+	<div id="calendarview00" class="calendarview">
+		<?xsp
+			var row = 0;
+			var events = db.get_next_calendar_events_daily(3);
+			for(var d in events) {
+				document.write("<div id=\"dayview" + String(d).lpad(2, "0") + "\" class=\"dayview\">");
+				for(var e in events[d]) {
+					var event = events[d][e];
+					var grid = 4;
+					document.write("<div id=\"event" + event.id +"\" class=\"event r r" + String(row).lpad(2, "0") +" d d" + String(grid).lpad(2, "0") +"\">");
+					document.write(" <div class=\"info\">");
+					document.write("  <div class=\"time\">" + event.start_time + "–" + event.end_time + "</div><br />");
+					document.write("  " + escape_xml(event.description));
+					document.write(" </div>");
+					document.write("</div>");
+				}
+				document.write("</div>");
+				row++;
+			}
+		?>
+	</div>
+
+	<?xsp
+		if(events.length >= 1) {
+			document.write("<script type=\"text/javascript\">setup_calendar_events();</script>");
+		}
+	?>
+	
+	<div id="add_calendar_event">
+		<fieldset>
+		 <label>Add Calendar Event</label>
+		    <form method="post" xsp:name="submit_calendar_event" xsp:onsubmit="db.add_calendar_event(form.start_time, form.end_time, form.subject, form.description)">
+    		Start time<br/>
+	    	<input type="text" name="start_time" value="" /><br />
+    		End time<br/>
+	    	<input type="text" name="end_time" value="" /><br />
+    		Subject<br/>
+	    	<input type="text" name="subject" value="" /><br />
+	    	Description<br/>
+		    <input type="text" name="description" value="" /><br />
+    		<input type="submit" value="Submit" />
+		    </form>
+		</fieldset>
+	</div>
+	
+</div>
+
+</body>
+</html>

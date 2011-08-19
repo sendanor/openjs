@@ -1,0 +1,72 @@
+#!/usr/local/bin/js-cgi
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsp="http://www.sendanor.org/xmlns/xsp"
+      xml:lang="en">
+<head>
+	<title>XSP example using JavaScript</title>
+</head>
+<body>
+	<!-- This is a place for content -->
+	<div id="content" class="bar">
+		<h1>XSP example using JavaScript</h1>
+		
+		<p>
+		
+		<xsp:script type="text/javascript">
+		function ltrim(str) {
+			return str.replace(new RegExp("^\\s+", "g"), "");
+		}
+		function rtrim(str) {
+			return str.replace(new RegExp("\\s+$", "g"), "");
+		}
+		function trim(str) {
+			return ltrim(rtrim(str));
+		}
+		</xsp:script>
+		
+		<xsp:script type="text/javascript">
+		document.write("Hello World!");
+		</xsp:script>
+		<br />
+		
+		<xsp:script type="text/javascript">
+		document.write(123*345*678);
+		</xsp:script>
+		<br />
+		
+		<xsp:script type="text/javascript">
+		system.cmd("./test.sh");
+		</xsp:script>
+		<br />
+		
+		<xsp:script type="text/javascript">
+		system.cmd("./test.sh", "hello", "world");
+		</xsp:script>
+		<br />
+		
+		<xsp:script type="text/javascript">
+		system.cmd("uptime");
+		</xsp:script>
+		<br />
+		
+		<xsp:script type="text/javascript">
+		var output = rtrim(system.getcmd("date", "-R"));
+		document.write("We got '" + output + "' from the system.");
+		</xsp:script>
+		<br />
+		
+		<xsp:script type="text/javascript">
+		var ret = system.cmd("true");
+		document.write("Exit status was " + ret + ".");
+		</xsp:script>
+		<br />
+		
+		</p>
+
+	</div>
+</body>
+</html>

@@ -1,0 +1,12 @@
+SOURCES=js.cc
+TARGETS=js
+CXXFLAGS += `$(SRCDIR)/bin/boost_config --cflags`
+LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=thread --libs=system --libs=filesystem --libs=program_options` -ldl
+#LDFLAGS += -L$(SRCDIR)/src/openjs/core -lopenjs
+#LDFLAGS += $(SRCDIR)/src/openjs/extensions/{basicfilesystem/basicfilesystem,basicsys/basicsys,basicstream/basicstream,sql/sql}.a
+
+## libexecstream for jsxmlpp
+#LDFLAGS += $(SRCDIR)/src/libexecstream/exec-stream.o
+
+# for ASIO with SSL support
+LDFLAGS += -lpthread -lssl

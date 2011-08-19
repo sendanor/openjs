@@ -1,0 +1,20 @@
+== undefined ==
+
+Undefined is a special type that has only one value. All values are undefined 
+by default.
+
+ var x; // x is undefined
+
+Undefined is returned by default in most places:
+
+ var obj = {};
+ var y = obj.y // y is undefined
+
+ function x() {};
+ var y = x(); // y is undefined
+
+When you need to check if a value is undefined it is common practice to declare 
+variable undefined without setting value to it.
+
+ var undefined;
+ if(x === undefined) return;

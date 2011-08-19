@@ -1,0 +1,13 @@
+Source: openjs
+Section: unknown
+Priority: extra
+Maintainer: Jaakko-Heikki Heusala <jheusala@sendanor.fi>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.7.3
+Homepage: http://www.sendanor.org
+
+Package: openjs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: OpenJS -- Common JavaScript interpreter
+ OpenJS is a script interpreter based on Google V8 JavaScript library.

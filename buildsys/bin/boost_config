@@ -1,0 +1,31 @@
+#!/bin/sh
+set -e
+flags=''
+for arg in "$@"; do
+	case "$arg" in
+	--cflags)
+		if test -d /usr/include/boost; then
+			continue
+		fi
+		includedir="$(find /usr/include -maxdepth 1 -type d -iname 'boost*'|tail -n 1)"
+		if test -d "$includedir/boost"; then
+			flags+=' -I'"$includedir"
+			continue
+		fi
+	;;
+	--libs)
+		echo 'Error: --libs needs a boost library name' >&2
+		exit 1
+	;;
+	--libs=*)
+		lib="${arg#--libs=}"
+		libflag="$(find /usr/lib -maxdepth 1 -iname 'libboost_'"$lib"'*.so' -or -iname 'libboost_'"$lib"'*.a'|sed -re 's/\.(so|a)//'|sort|uniq|sed -re 's@^/usr/lib/lib@@'|head -1)"
+		if test "x$libflag" = x; then
+			echo "Error: Cannot find library boost_$lib" >&2
+			exit 1
+		fi
+		flags+=' -l'"$libflag"
+	;;
+	esac
+done
+echo $flags

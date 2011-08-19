@@ -1,0 +1,38 @@
+# Sendanor -- Generic top directory Makefile
+# $Id: Makefile 3454 2007-10-18 16:29:54Z jheusala $
+
+all: build
+
+SRCDIR := $(shell /bin/sh -c 'set -e; dir=`pwd`; while test ! -f "$$dir/Makefile.global"; do dir="`dirname "$$dir"`"; test "x$$dir" != x/; done; echo $$dir')
+-include $(SRCDIR)/Makefile.global
+-include Makefile.local
+
+build: subdirs-build
+clean: subdirs-clean
+install: subdirs-install
+
+subdirs-build: 
+	if test -n "$(PRESUBDIRS:=-build)"; then $(MAKE) $(PRESUBDIRS:=-build); fi
+	if test -n "$(SUBDIRS:=-build)"; then $(MAKE) $(SUBDIRS:=-build); fi
+	if test -n "$(POSTSUBDIRS:=-build)"; then $(MAKE) $(POSTSUBDIRS:=-build); fi
+
+subdirs-install:
+	if test -n "$(PRESUBDIRS:=-install)"; then $(MAKE) $(PRESUBDIRS:=-install); fi
+	if test -n "$(SUBDIRS:=-install)"; then $(MAKE) $(SUBDIRS:=-install); fi
+	if test -n "$(POSTSUBDIRS:=-install)"; then $(MAKE) $(POSTSUBDIRS:=-install); fi
+
+subdirs-clean:
+	if test -n "$(PRESUBDIRS:=-clean)"; then $(MAKE) $(PRESUBDIRS:=-clean); fi
+	if test -n "$(SUBDIRS:=-clean)"; then $(MAKE) $(SUBDIRS:=-clean); fi
+	if test -n "$(POSTSUBDIRS:=-clean)"; then $(MAKE) $(POSTSUBDIRS:=-clean); fi
+
+%-build: %
+	$(MAKE) -C $< build
+
+%-clean: %
+	$(MAKE) -C $< clean
+
+%-install: %
+	$(MAKE) -C $< install
+
+# EOF

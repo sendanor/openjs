@@ -1,0 +1,23 @@
+== Extension ==
+
+Non-standard OpenJS specific object for OpenJS extension management.
+
+Imlemented in [[Extension/loader|loader extension]].
+
+== Extension.load ==
+
+Load OpenJS extension from global installation path:
+
+ Extension.load("string");
+
+Load local file as an extension:
+
+ Extension.load("./string");
+
+== Extension.file ==
+
+== Extension.id ==
+
+== Extension.name ==
+
+== Extension.version ==

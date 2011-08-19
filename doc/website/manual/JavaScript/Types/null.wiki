@@ -1,0 +1,15 @@
+== null ==
+
+Variable with null type has only one value.
+
+ var x = null;
+
+=== Testing the value ===
+
+Note that result from [[typeof]] '''is not''' null! Use [[===|operator ===]] to test if a variable has null value:
+
+ if(x === null) {
+ 	system.stdout.writeln("x is null");
+ } else {
+ 	system.stdout.writeln("x is not null");
+ }

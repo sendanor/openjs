@@ -1,0 +1,10 @@
+LIBNAME=basicfastcgi
+SOURCES=basicfastcgi.cc
+LIBDIR=$(PREFIX)/lib/openjs
+CXXFLAGS += `$(SRCDIR)/bin/boost_config --cflags`
+LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=thread --libs=system` -ldl
+LDFLAGS += -lfcgi++
+MAJOR=0
+MINOR=0
+REVISION=20091109
+VERSION=$(MAJOR).$(MINOR).$(REVISION)

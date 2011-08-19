@@ -1,0 +1,7 @@
+LIBNAME=basicthread
+SOURCES=basicthread.cc
+LIBDIR=$(PREFIX)/lib/openjs
+MAJOR=0
+MINOR=0
+REVISION=20100807
+VERSION=$(MAJOR).$(MINOR).$(REVISION)

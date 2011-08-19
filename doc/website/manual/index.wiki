@@ -1,0 +1,23 @@
+== Manual ==
+
+&copy; 2010 Jaakko Heusala &lt;jhh@jhh.me&gt;
+
+*[[copyright|Copyright]]
+*[[JavaScript|JavaScript Language Reference]]
+**[[JavaScript/Functions]]
+**[[JavaScript/Objects]]
+**[[JavaScript/Types]]
+***[[JavaScript/Types/undefined]]
+***[[JavaScript/Types/null]]
+***[[JavaScript/Types/Boolean]]
+***[[JavaScript/Types/String]]
+***[[JavaScript/Types/Number]]
+***[[JavaScript/Types/Object]]
+***[[JavaScript/Types/Date]]
+**[[JavaScript/Reserved Words]]
+**[[JavaScript/Punctuators]]
+*[[OpenJS|OpenJS Reference]]
+**[[OpenJS/Extension]]
+**[[OpenJS/Filesystem]]
+**[[OpenJS/CLI|CLI (Command line syntax)]]
+**[[OpenJS/Extensions]]

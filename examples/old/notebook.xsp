@@ -1,0 +1,68 @@
+#!/usr/local/bin/js-cgi
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsp="http://www.sendanor.org/xmlns/xsp"
+      xml:lang="en">
+<head>
+	<title>XSP JavaScript notebook</title>
+</head>
+<body>
+
+<xsp:script type="text/javascript" src="config.js" />
+<xsp:script type="text/javascript" src="trim.js" />
+	
+<h1>Notebook example</h1>
+
+<p>Sendanor's XSP stands for XML Scripting Preprosessor. It uses Google's V8 
+JIT JavaScript engine at the server side to provide dynamic web scripting 
+environment.</p>
+
+<p>This is an example how it can be used to build a simple web notebook using 
+SQL database. Source code can be viewed from the file <a 
+href="notebook.xsps">notebook.xsps</a>.</p>
+
+<?xsp
+	var sql = new system.sql(database_config);
+	if(typeof system.input.submit != "undefined") {
+		sql.query("INSERT INTO test_notebook (creation,updated,name,message) VALUES (NOW(), NOW(), :name, :message)", system.input.name, system.input.message);
+	}
+?>
+
+<h2>Notes</h2>
+<p>
+<?xsp
+	var rows = sql.query("SELECT * FROM test_notebook");
+	if(rows.length == 0) {
+		document.write("No notes in the database.");
+	} else {
+		for(var i in rows) {
+			document.writeln("&lt;" + escape_xml(rows[i].name) + "&gt; " + escape_xml(rows[i].message) + "<br />");
+		}
+	}
+?>
+</p>
+<br />
+
+<fieldset>
+ <legend>Submit your note</legend>
+	<form method="post">
+	Name<br/>
+	<input type="text" name="name" value="" /><br />
+	Message<br/>
+	<input type="text" name="message" value="" /><br />
+	<input type="submit" name="submit" value="submit" />
+	</form>
+</fieldset>
+
+<h2>Why XSP / server-side JavaScript?</h2>
+
+<ul>
+ <li>The complete system is covered by highly open licenses (BSD, MIT, LGPL, etc)</li>
+ <li>Same JavaScript code can be used at both sides</li>
+</ul>
+
+</body>
+</html>

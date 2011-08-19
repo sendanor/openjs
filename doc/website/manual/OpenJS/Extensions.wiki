@@ -1,0 +1,32 @@
+== Extensions ==
+
+OpenJS comes with special extensions to make it better programming environment.
+
+*[[Extension/loader|loader]] -- Extension loading support
+*[[Extension/stream|stream]] -- Stream support
+*[[Extension/system|system]] -- System support
+*[[Extension/sql|sql]] -- SQL support
+*[[Extension/filesystem|filesystem]] -- Filesystem operations
+*[[Extension/include|include]] -- Support for include()
+*[[Extension/import|import]] -- Support for import()
+*[[Extension/string|string]] -- Extended operations for String
+*[[Extension/cgi|cgi]] -- CGI support
+*[[Extension/date|date]] -- Extended operations for Date
+*[[Extension/array|array]] -- Extended operations for Array
+*[[Extension/gdome|gdome]] -- GDOME2 library
+*[[Extension/fastcgi|fastcgi]] -- FastCGI support
+*[[Extension/jsxmlpp|jsxmlpp]] -- XML preprocessor
+*[[Extension/cookie|cookie]] -- Cookie support
+
+OpenJS has also packed some external libraries into it:
+
+*[[Extension/json2|json2]] -- Built-in external JSON library
+
+Some extensions are only used by other extensions:
+
+*[[Extension/basicstream|basicstream]]
+*[[Extension/basicfilesystem|basicfilesystem]]
+*[[Extension/basicsys|basicsys]]
+*[[Extension/mod_cgdome|mod_cgdome]]
+*[[Extension/cfcgi|cfcgi]]
+*[[Extension/basicjsxmlpp|basicjsxmlpp]]

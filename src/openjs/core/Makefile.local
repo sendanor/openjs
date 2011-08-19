@@ -1,0 +1,7 @@
+LIBNAME=libopenjs
+SOURCES=
+#CXXFLAGS += `$(SRCDIR)/bin/boost_config --cflags`
+#LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=thread` -ldl
+
+## libexecstream for jsxmlpp
+#LDFLAGS += $(SRCDIR)/src/libexecstream/exec-stream.o

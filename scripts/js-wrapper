@@ -1,0 +1,5 @@
+#!/bin/sh
+prefix=/opt/xsp/nodebug
+LD_LIBRARY_PATH="$prefix"/lib
+export LD_LIBRARY_PATH
+exec "$prefix"/bin/js "$@"

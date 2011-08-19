@@ -1,0 +1,6 @@
+== loader ==
+
+Provides:
+*[[Extension]]
+*[[BinaryExtension]]
+*[[SourceExtension]]

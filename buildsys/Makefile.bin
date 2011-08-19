@@ -1,0 +1,55 @@
+# Sendanor -- Generic library Makefile
+# $Id: Makefile 3454 2007-10-18 16:29:54Z jheusala $
+
+all: build
+
+CLEAN_FILES=
+PROGRAM_PREFIX=
+PROGRAM_SUFFIX=
+SRCDIR := $(shell /bin/sh -c 'set -e; dir=`pwd`; while test ! -f "$$dir/Makefile.global"; do dir="`dirname "$$dir"`"; test "x$$dir" != x/; done; echo $$dir')
+-include $(SRCDIR)/Makefile.global
+-include Makefile.local
+
+build: subdirs-build $(TARGETS)
+
+subdirs-build: $(SUBDIRS:=-build)
+subdirs-install: $(SUBDIRS:=-install)
+subdirs-clean: $(SUBDIRS:=-clean)
+
+%: %.o
+	$(CXX) $(CXXFLAGS) -o $@ $< $(LDFLAGS)
+
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.d: %.cc
+	@set -e; $(RM) -f $@; \
+		$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$.t; \
+		sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$.t > $@; \
+		$(RM) -f $@.$$$$.t
+
+clean: subdirs-clean
+	$(RM) *.a *.o *.so *.so.200* *.d *.t $(TARGETS) $(CLEAN_FILES)
+
+-include $(SOURCES:.cc=.d)
+
+install: subdirs-install $(addprefix install-,$(TARGETS))
+
+installdirs:
+	mkdir -p "$(DESTDIR)$(BINDIR)"
+	chmod 711 "$(DESTDIR)$(BINDIR)"
+
+install-%: % installdirs
+	cp -f "$<" "$(DESTDIR)$(BINDIR)/$(PROGRAM_PREFIX)$<$(PROGRAM_SUFFIX)"
+	chmod 700 "$(DESTDIR)$(BINDIR)/$(PROGRAM_PREFIX)$<$(PROGRAM_SUFFIX)"
+
+%-build: %
+	$(MAKE) -C $< build
+
+%-clean: %
+	$(MAKE) -C $< clean
+
+%-install: %
+	$(MAKE) -C $< install
+
+# EOF

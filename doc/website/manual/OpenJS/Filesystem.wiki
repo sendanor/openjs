@@ -1,0 +1,34 @@
+== Filesystem ==
+
+Non-standard OpenJS specific object for filesystem operations.
+
+Imlemented in [[Extension/filesystem|filesystem extension]].
+
+== Filesystem.open ==
+== Filesystem.readfile ==
+== Filesystem.writefile ==
+== Filesystem.stat ==
+== Filesystem.setupCache ==
+== Filesystem.hasChangedFiles ==
+== Filesystem.initStream ==
+== Filesystem.chmod ==
+== Filesystem.list ==
+== Filesystem.exists ==
+== Filesystem.isRegularFile ==
+== Filesystem.isDirectory ==
+== Filesystem.isSymlink ==
+== Filesystem.isOther ==
+== Filesystem.isEmpty ==
+== Filesystem.equivalent ==
+== Filesystem.initialPath ==
+== Filesystem.currentPath ==
+== Filesystem.size ==
+== Filesystem.lastWriteTime ==
+== Filesystem.createDirectory ==
+== Filesystem.createHardLink ==
+== Filesystem.createSymlink ==
+== Filesystem.remove ==
+== Filesystem.removeAll ==
+== Filesystem.rename ==
+== Filesystem.copy ==
+== Filesystem.createDirectories ==

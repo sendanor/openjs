@@ -1,0 +1,54 @@
+LIBNAME=mod_cgdome
+
+SOURCES=mod_cgdome.cc
+
+LIBDIR=$(PREFIX)/lib/openjs
+MAJOR=0
+MINOR=0
+REVISION=20090824
+VERSION=$(MAJOR).$(MINOR).$(REVISION)
+
+auto-wrappers.h: wrappers.conf build-wrappers.pl
+	./build-wrappers.pl --with-headers > auto-wrappers.h
+
+auto-c-wrappers.h: wrappers.conf build-wrappers.pl
+	./build-wrappers.pl --with-c-headers > auto-c-wrappers.h
+
+auto-wrappers.cc: wrappers.conf build-wrappers.pl
+	./build-wrappers.pl --with-sources > auto-wrappers.cc
+
+auto-c-wrappers.c: wrappers.conf build-wrappers.pl
+	./build-wrappers.pl --with-c-sources > auto-c-wrappers.c
+
+auto-wrapper-fsets.cc: wrappers.conf build-wrappers.pl
+	./build-wrappers.pl --with-function-sets > auto-wrapper-fsets.cc
+
+auto-wrapper-fmap.cc: wrappers.conf build-wrappers.pl
+	./build-wrappers.pl --with-function-map > auto-wrapper-fmap.cc
+
+auto-wrappers: auto-wrappers.cc auto-wrapper-fsets.cc auto-wrappers.h auto-c-wrappers.h auto-c-wrappers.c auto-wrapper-fmap.cc
+	touch auto-wrappers
+
+auto-constants-headers.h: auto-constants.conf build-constants.pl
+	./build-constants.pl --with-headers > auto-constants-headers.h
+
+auto-constants-sources.c: auto-constants.conf build-constants.pl
+	./build-constants.pl --with-sources > auto-constants-sources.c
+
+auto-constants-fsets.cc: auto-constants.conf build-constants.pl
+	./build-constants.pl --with-function-sets > auto-constants-fsets.cc
+
+auto-constants: auto-constants-headers.h auto-constants-sources.c auto-constants-fsets.cc
+	touch auto-constants
+
+auto-constants.conf: enums.conf
+	cat enums.conf|grep -Eo 'GDOME_[A-Z_]+' > auto-constants.conf
+
+auto: auto-wrappers auto-constants
+	touch auto
+
+clean-auto:
+	rm -f auto auto-constants-fsets.cc auto-constants-sources.c auto-c-wrappers.h
+	rm -f auto-wrappers.cc auto-constants-headers.h auto-c-wrappers.c
+	rm -f auto-wrapper-fsets.cc auto-wrappers.h auto-constants auto-constants.conf
+	rm -f auto-wrappers auto-wrapper-fmap.cc

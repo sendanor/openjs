@@ -1,0 +1,18 @@
+TARGETS=runner
+TEST_SOURCES=$(wildcard *-test.cc)
+SOURCES=runner.cc $(TEST_SOURCES)
+CXXFLAGS += -DBOOST_TEST_DYN_LINK `$(SRCDIR)/bin/boost_config --cflags`
+LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=unit_test_framework` $(TEST_SOURCES:.cc=.o)
+
+## libsendanorbase / MSP backtrace
+#LIBSENDANORBASE_DIR=$(SRCDIR)/../../libsendanor-base/trunk/src
+#CXXFLAGS += -I $(LIBSENDANORBASE_DIR)
+#LDFLAGS += $(LIBSENDANORBASE_DIR)/sendanor/libsendanorbase.a \
+#           $(LIBSENDANORBASE_DIR)/msp/debug/msp_debug.a -ldl \
+#           $(LIBSENDANORBASE_DIR)/diff/diff.a
+
+## Google V8
+#LDFLAGS += -lv8_g -lpthread
+
+runner: $(TEST_SOURCES:.cc=.o)
+

@@ -1,0 +1,9 @@
+LIBNAME=sql
+SOURCES=sql.cc
+LIBDIR=$(PREFIX)/lib/openjs
+CXXFLAGS += `$(SRCDIR)/bin/boost_config --cflags`
+LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=thread` -ldl
+MAJOR=0
+MINOR=0
+REVISION=20090328
+VERSION=$(MAJOR).$(MINOR).$(REVISION)

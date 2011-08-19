@@ -1,0 +1,11 @@
+LIBNAME=cfcgi
+SOURCES=cfcgi.cc
+#INSTALL_LIBS=cfcgi.dep
+LIBDIR=$(PREFIX)/lib/openjs
+CXXFLAGS += `$(SRCDIR)/bin/boost_config --cflags`
+LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=thread --libs=system` -ldl
+LDFLAGS += -lfcgi++
+MAJOR=0
+MINOR=0
+REVISION=20091113
+VERSION=$(MAJOR).$(MINOR).$(REVISION)

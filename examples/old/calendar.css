@@ -1,0 +1,145 @@
+/**
+ * CSS for Calendar Example
+ * $Id: calendar.css 7158 2009-03-23 16:54:37Z jheusala $
+ */
+
+html {
+	height: 100%;
+}
+
+body {
+	background-color: #eeeeee;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	height: 4%;
+	margin: 0;
+	padding: 0;
+}
+
+#header h1 {
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 1.2em;
+	margin: 0;
+	padding: 0;
+}
+
+#content {
+	height: 95%;
+	margin: 0;
+	padding: 0;
+}
+
+.calendarview {
+	font-family: Arial, Helvetica, Sans-Serif;
+	font-size: 0.9em;
+	background-color: #ffffff;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.calendarview .dayview {
+	width: 33%;
+	float: left;
+	background-color: #ccccff;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	/*border-right: 1px solid #777799;*/
+}
+
+.calendarview .dayview .event {
+	background-color: #88cc88;
+	width: 100%;
+/*	height: 20%;*/
+	margin: 0;
+	padding: 0;
+}
+
+.calendarview .dayview .event:hover {
+	background-color: #99dd99;
+}
+
+.calendarview .dayview .event br {
+	display: none;
+}
+
+.calendarview .dayview .event .info {
+	background-color: #aaffaa;
+	width: 98%;
+	height: 97%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: 1.5%;
+	left: 1%;
+}
+
+.calendarview .dayview .event .time {
+	background-color: #88cc88;
+	width: 100%;
+	height: 1.3em;
+	margin: 0;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.calendarview .r {
+	position: relative;
+}
+
+.calendarview .r01 { top:  3.125%; }
+.calendarview .r02 { top:  6.250%; }
+.calendarview .r03 { top:  9.375%; }
+.calendarview .r04 { top: 12.500%; }
+.calendarview .r05 { top: 15.625%; }
+.calendarview .r06 { top: 18.750%; }
+.calendarview .r07 { top: 21.875%; }
+.calendarview .r08 { top: 25.000%; }
+.calendarview .r09 { top: 28.125%; }
+.calendarview .r0a { top: 31.250%; }
+.calendarview .r0b { top: 34.375%; }
+.calendarview .r0c { top: 37.500%; }
+.calendarview .r0d { top: 40.625%; }
+.calendarview .r0e { top: 43.750%; }
+.calendarview .r0f { top: 46.875%; }
+.calendarview .r10 { top: 50.000%; }
+
+.calendarview .d {
+	height: 3.125%;
+}
+
+.calendarview .d00 { height:  3.125%; }
+.calendarview .d01 { height:  6.250%; }
+.calendarview .d02 { height:  9.375%; }
+.calendarview .d03 { height: 12.500%; }
+.calendarview .d04 { height: 15.625%; }
+.calendarview .d05 { height: 18.750%; }
+.calendarview .d06 { height: 21.875%; }
+.calendarview .d07 { height: 25.000%; }
+.calendarview .d08 { height: 28.125%; }
+.calendarview .d09 { height: 31.250%; }
+.calendarview .d0a { height: 34.375%; }
+.calendarview .d0b { height: 37.500%; }
+.calendarview .d0c { height: 40.625%; }
+.calendarview .d0d { height: 43.750%; }
+.calendarview .d0e { height: 46.875%; }
+.calendarview .d0f { height: 50.000%; }
+
+.calendarview #gplace {
+	/*border: 1px solid black;*/
+	background-color: #ff0000;
+	width: 100%;
+	height: 3.125%;
+	margin: 0;
+	padding: 0;
+	position: relative;
+	top: 30%;
+}
+
+/* EOF */

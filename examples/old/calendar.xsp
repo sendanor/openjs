@@ -1,0 +1,7 @@
+#!/usr/local/bin/js-cgi
+<xsp:div xmlns:xsp="http://www.sendanor.org/xmlns/xsp">
+	<xsp:script type="text/javascript" src="config.js" />
+	<xsp:script type="text/javascript" src="trim.js" />
+	<xsp:script type="text/javascript" src="calendar_ajax.js" />
+	<xsp:import src="calendar.html" />
+</xsp:div>

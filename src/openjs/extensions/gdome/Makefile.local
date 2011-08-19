@@ -1,0 +1,17 @@
+LIBNAME=gdome
+INSTALL_LIBS=gdome.dep
+LIBDIR=$(PREFIX)/lib/openjs
+MAJOR=0
+MINOR=0
+REVISION=20090328
+VERSION=$(MAJOR).$(MINOR).$(REVISION)
+
+auto-objects: build-objects.pl objects.conf
+	./build-objects.pl --with-sources 2> debug.log
+	cp -f static/GdomeException.js bits/
+
+auto: auto-objects
+	touch auto
+
+clean-auto:
+	rm auto

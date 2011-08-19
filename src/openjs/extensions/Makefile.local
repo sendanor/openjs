@@ -1,0 +1,2 @@
+SUBDIRS=loader basicstream stream basicfilesystem basicsys system sql filesystem include import string cookie cgi \
+	json2 date array cfcgi fastcgi number object regexp math block timer asio basicthread thread mime ccurl curl

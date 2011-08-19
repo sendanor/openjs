@@ -1,0 +1,76 @@
+CXX=g++
+LDFLAGS=
+CFLAGS=-ggdb3 -O2 -rdynamic -fmessage-length=0 -Wall -Wshadow -Wextra -Wpointer-arith -Wconversion \
+	-I $(SRCDIR)/src
+CXXFLAGS=-ggdb3 -O2 -rdynamic -fmessage-length=0 -Wall -Wshadow -Wextra -Wpointer-arith -Wconversion \
+	-include $(SRCDIR)/config.h -I $(SRCDIR)/src
+#CXXFLAGS += -Weffc++
+MAJOR=0
+MINOR=0
+REVISION=20100630
+VERSION=$(MAJOR).$(MINOR).$(REVISION)
+
+# OpenJS
+OPENJS_SRCDIR=$(SRCDIR)/src/openjs
+#LDFLAGS += -static
+
+# curl
+LDFLAGS += -lcurl
+
+# Glib
+CXXFLAGS += `pkg-config glibmm-2.4 --cflags`
+LDFLAGS += `pkg-config glibmm-2.4 --libs`
+
+# gmime
+CXXFLAGS += `pkg-config gmime-2.4 --cflags`
+LDFLAGS += `pkg-config gmime-2.4 --libs`
+
+# Google V8
+LDFLAGS += -lv8_g -lpthread -lrt
+#LDFLAGS += -L /usr/lib/oprofile -lopagent
+
+## libsendanorbase / MSP backtrace
+##LIBSENDANORBASE_DIR=
+##CXXFLAGS += -I $(LIBSENDANORBASE_DIR)
+##LDFLAGS += -L $(SRCDIR)/src/openjs/core
+#LDFLAGS += -lsendanor -lmspdebug -ldl -ldiff
+
+## Google V8 (again)
+#LDFLAGS += -lv8_g -lpthread -lrt
+
+## libxml++
+#CXXFLAGS += `pkg-config libxml++-2.6 --cflags`
+#LDFLAGS += `pkg-config libxml++-2.6 --libs` -lpcre
+
+## cgicc
+#LDFLAGS += -lcgicc
+
+# SOCI/MySQL
+CXXFLAGS += -I /usr/include/soci/mysql -I /usr/include/soci `mysql_config --cflags`
+LDFLAGS += -lsoci_core -ldl -lmysqlclient
+#CXXFLAGS += -I /usr/include/soci
+#LDFLAGS += -lsoci_core -ldl
+
+## libxml++
+#CXXFLAGS += `pkg-config libxml++-2.6 --cflags`
+#LDFLAGS += `pkg-config libxml++-2.6 --libs`
+
+## Google V8
+#LDFLAGS += -lv8_g -lpthread -lrt
+
+# FastCGI
+LDFLAGS += -lfcgi++
+
+## gdome
+#CXXFLAGS += `pkg-config gdome2 --cflags`
+#LDFLAGS += `pkg-config gdome2 --libs`
+
+## gdome (cgate)
+#CFLAGS += `pkg-config gdome2 --cflags`
+#CXXFLAGS += `pkg-config gdome2 --cflags`
+#LDFLAGS += `pkg-config gdome2 --libs`
+
+# Include configs from configure
+-include $(SRCDIR)/Makefile.config
+
+# EOF

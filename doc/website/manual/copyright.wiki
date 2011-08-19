@@ -1,0 +1,3 @@
+== Copyright ==
+
+Copyright &copy; 2010 by Jaakko Heusala &lt;jhh@jhh.me&gt;.

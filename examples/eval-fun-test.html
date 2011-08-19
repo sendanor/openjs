@@ -1,0 +1,19 @@
+<html>
+<body>
+
+<script type="text/javascript">
+function include() {
+	var mycode = "/* Test command */\nfunction foo() {\ndocument.writeln(\"I am a foo\");\n}\n";
+    GlobalEval(mycode);
+	//var fun = new Function(mycode);
+	//fun();
+	foo();
+}
+
+include();
+foo();
+
+</script>
+</body>
+
+</html>

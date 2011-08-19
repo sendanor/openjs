@@ -1,0 +1,7 @@
+=== Wikidoc ===
+
+Wikidoc is an experimental file-based wiki software using Subversion and 
+written to be easy to use to write programming documentation. It is going to be 
+used to write OpenJS manuals.
+
+It is also used as a CMS for www.openjs.org.

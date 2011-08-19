@@ -1,0 +1,7 @@
+== filesystem ==
+
+Provides:
+*[[Filesystem]]
+
+Depends:
+*[[Extension/basicfilesystem|basicfilesystem]]

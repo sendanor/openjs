@@ -1,0 +1,7 @@
+== Boolean ==
+
+Boolean type has two values, '''true''' and '''false'''.
+
+ var x = true;
+ if(x === true) /* x is true */
+ if(x) /* x is not false, undefined or null */

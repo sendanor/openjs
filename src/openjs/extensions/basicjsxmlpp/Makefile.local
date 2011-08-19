@@ -1,0 +1,12 @@
+LIBNAME=basicjsxmlpp
+SOURCES=basicjsxmlpp.cc
+LIBDIR=$(PREFIX)/lib/openjs
+INSTALL_LIBS=basicjsxmlpp.dep
+
+## libexecstream
+#LDFLAGS += $(SRCDIR)/src/libexecstream/exec-stream.o
+
+MAJOR=0
+MINOR=0
+REVISION=20100425
+VERSION=$(MAJOR).$(MINOR).$(REVISION)

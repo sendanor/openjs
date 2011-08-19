@@ -1,0 +1,7 @@
+=== OpenJS ===
+
+OpenJS is a modular script interpreter based on Google V8 JavaScript library. It can be used to build serverside
+CGI or local shell scripts with standard JavaScript.
+
+Support for [[http://www.commonjs.org/|CommonJS]] is planned but it might not yet fully
+support it.

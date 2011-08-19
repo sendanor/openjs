@@ -1,0 +1,30 @@
+SOURCES=soci-dynquery-1.cc soci-dynquery-2.cc soci-dynquery-3.cc ustring-string-convert.cc xmlreader.cc domtest1.cc \
+	gdome-cpp-test-1.cc limits.cc
+TARGETS=soci-dynquery-1 soci-dynquery-2 soci-dynquery-3 ustring-string-convert xmlreader domtest1 \
+	gdome-cpp-test-1 limits
+
+# Google V8
+LDFLAGS += -lv8_g -lpthread
+
+## libxml++
+#CXXFLAGS += `pkg-config libxml++-2.6 --cflags`
+#LDFLAGS += `pkg-config libxml++-2.6 --libs`
+
+## cgicc
+##CXXFLAGS += 
+#LDFLAGS += -lcgicc
+
+# SOCI/MySQL
+CXXFLAGS += -I /usr/include/soci/mysql -I /usr/include/soci `mysql_config --cflags`
+LDFLAGS += -lsoci_core -ldl -lmysqlclient
+
+## gmetadom / gdome2-cpp-smart
+#CXXFLAGS += `pkg-config gdome2-cpp-smart --cflags`
+#LDFLAGS += `pkg-config gdome2-cpp-smart --libs`
+
+## libsendanorbase / MSP backtrace
+#LIBSENDANORBASE_DIR=$(SRCDIR)/../../libsendanor-base/trunk/src
+#CXXFLAGS += -I $(LIBSENDANORBASE_DIR)
+#LDFLAGS += $(LIBSENDANORBASE_DIR)/sendanor/libsendanorbase.a \
+#           $(LIBSENDANORBASE_DIR)/msp/debug/msp_debug.a -ldl \
+#           $(LIBSENDANORBASE_DIR)/diff/diff.a

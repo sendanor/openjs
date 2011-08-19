@@ -1,0 +1,273 @@
+/**
+ * Modular Library -- Header Source File
+ */
+
+#ifndef OPENJS_MODULAR_MODULAR_HCC
+#define OPENJS_MODULAR_MODULAR_HCC 1
+
+#include "Modular.h"
+
+/**** LoadedModule ****/
+
+/** */
+template<class BaseModuleType>
+Modular::LoadedModule<BaseModuleType>::LoadedModule() : m_id(0), m_dl(0), m_module(0) {
+}
+
+/** */
+template<class BaseModuleType>
+Modular::LoadedModule<BaseModuleType>::~LoadedModule() {
+}
+
+/** */
+template<class BaseModuleType>
+std::size_t
+Modular::LoadedModule<BaseModuleType>::id() const {
+	return m_id;
+}
+
+/** */
+template<class BaseModuleType>
+BaseModuleType*
+Modular::LoadedModule<BaseModuleType>::module() const {
+	return m_module;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::LoadedModule<BaseModuleType>::id(const std::size_t a_id) {
+	m_id = a_id;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::LoadedModule<BaseModuleType>::module(BaseModuleType* mod) {
+	m_module = mod;
+}
+
+/** */
+template<class BaseModuleType>
+void*
+Modular::LoadedModule<BaseModuleType>::dynamicLibrary() const {
+	return m_dl;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::LoadedModule<BaseModuleType>::dynamicLibrary(void* dl) {
+	m_dl = dl;
+}
+
+/** */
+template<class BaseModuleType>
+const typename BaseModuleType::Settings&
+Modular::LoadedModule<BaseModuleType>::settings() const {
+	return m_settings;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::LoadedModule<BaseModuleType>::settings(const typename BaseModuleType::Settings& a_settings) {
+	m_settings = a_settings;
+}
+
+
+/**** HandshakeRegister ****/
+
+/** Constructor */
+template<class BaseModuleType>
+Modular::HandshakeRegister<BaseModuleType>::HandshakeRegister() : m_handshake(0) {}
+
+/** Destructor */
+template<class BaseModuleType>
+Modular::HandshakeRegister<BaseModuleType>::~HandshakeRegister() {}
+
+/** */
+template<class BaseModuleType>
+Modular::HandshakeRegister<BaseModuleType>&
+Modular::HandshakeRegister<BaseModuleType>::self() {
+	static HandshakeRegister<BaseModuleType> reg;
+	return reg;
+}
+
+/** */
+template<class BaseModuleType>
+Modular::Handshake<BaseModuleType>*
+Modular::HandshakeRegister<BaseModuleType>::receiveHandshake() {
+	if(m_handshake == 0) throw std::runtime_error("Handshake process has not been initiated!");
+	return m_handshake;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::HandshakeRegister<BaseModuleType>::initiateHandshake(Handshake<BaseModuleType>* h) {
+	if(m_handshake != 0) throw std::runtime_error("Handshake process already initiated!");
+	m_handshake = h;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::HandshakeRegister<BaseModuleType>::clear() {
+	m_handshake = 0;
+}
+
+
+/**** Handshake ****/
+
+/** */
+template<class BaseModuleType>
+Modular::Handshake<BaseModuleType>::Handshake()
+ : m_module(0), m_dl(0) {
+	HandshakeRegister<BaseModuleType>::self().initiateHandshake(this);
+}
+
+/** */
+template<class BaseModuleType>
+Modular::Handshake<BaseModuleType>::~Handshake() {
+	HandshakeRegister<BaseModuleType>::self().clear();
+}
+
+/** */
+template<class BaseModuleType>
+BaseModuleType*
+Modular::Handshake<BaseModuleType>::module() const {
+	return m_module;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::Handshake<BaseModuleType>::module(BaseModuleType* mod) {
+	m_module = mod;
+}
+
+/** */
+template<class BaseModuleType>
+void*
+Modular::Handshake<BaseModuleType>::dynamicLibrary() const {
+	return m_dl;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::Handshake<BaseModuleType>::settings(const typename BaseModuleType::Settings& a_settings) {
+	m_settings = a_settings;
+}
+
+/** */
+template<class BaseModuleType>
+const typename BaseModuleType::Settings&
+Modular::Handshake<BaseModuleType>::settings() const {
+	return m_settings;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::Handshake<BaseModuleType>::dynamicLibrary(void* dl) {
+	m_dl = dl;
+}
+
+/** */
+template<class BaseModuleType>
+void
+Modular::Handshake<BaseModuleType>::finish() {
+	if(m_dl == 0) throw std::runtime_error("No dynamic library!");
+	if(m_module == 0) throw std::runtime_error("Module has not been negotiated!");
+}
+
+
+/**** DLHandshake ****/
+
+/** Constructor */
+template<class ModuleType> 
+Modular::DLHandshake<ModuleType>::DLHandshake() {
+	Handshake<typename ModuleType::Base>* h = HandshakeRegister<typename ModuleType::Base>::self().receiveHandshake();
+	typename ModuleType::Base* mod = new ModuleType(h->settings());
+	if(!mod) throw std::runtime_error("Module creation failed!");
+	h->module(mod);
+}
+
+/** Destructor */
+template<class ModuleType> 
+Modular::DLHandshake<ModuleType>::~DLHandshake() { }
+
+
+/**** ModuleRegister ****/
+
+/** Constructor */
+template<class BaseModuleType>
+Modular::ModuleRegister<BaseModuleType>::ModuleRegister() : m_next_id(0) {}
+
+/** Destructor */
+template<class BaseModuleType>
+Modular::ModuleRegister<BaseModuleType>::~ModuleRegister() {
+	clear();
+}
+
+/** Get name of the module */
+template<class BaseModuleType>
+Modular::LoadedModule<BaseModuleType>*
+Modular::ModuleRegister<BaseModuleType>::load(const std::string& file, const typename BaseModuleType::Settings& a_settings) {
+	
+	LoadedModule<BaseModuleType>* mod = new LoadedModule<BaseModuleType>();
+	mod->settings(a_settings);
+	mod->id(idGenerator());
+	
+	if(!mod) throw std::runtime_error("Could not create new registered module!");
+	m_modules.push_back(mod);
+	
+	Handshake<BaseModuleType> h;
+	
+	h.settings(a_settings);
+	
+	void* dl = dlopen(file.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+	if(!dl) throw std::runtime_error(dlerror());
+	mod->dynamicLibrary(dl);
+	h.dynamicLibrary(dl);
+	
+	h.finish();
+	mod->module(h.module());
+	return mod;
+}
+
+/** Unload modules and free memory in reverse order */
+template<class BaseModuleType>
+void
+Modular::ModuleRegister<BaseModuleType>::clear() {
+	for(typename ModuleVector::reverse_iterator i = m_modules.rbegin(); i!=m_modules.rend(); i++) {
+		Modular::LoadedModule<BaseModuleType>* mod = *i;
+		if(mod) {
+			if(mod->module()) {
+				delete mod->module();
+				mod->module(0);
+			}
+			
+			if(mod->dynamicLibrary()) {
+				dlclose(mod->dynamicLibrary());
+				mod->dynamicLibrary(0);
+			}
+			
+			delete mod;
+			*i = 0;
+		}
+	}
+}
+
+/** Generate new unique ID for a module */
+template<class BaseModuleType>
+std::size_t
+Modular::ModuleRegister<BaseModuleType>::idGenerator() {
+	return m_next_id++;
+}
+
+#endif
+
+/* EOF */

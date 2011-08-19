@@ -1,0 +1,9 @@
+LIBNAME=mime
+SOURCES=mime.cc
+LIBDIR=$(PREFIX)/lib/openjs
+#CXXFLAGS += `$(SRCDIR)/bin/boost_config --cflags`
+#LDFLAGS += `$(SRCDIR)/bin/boost_config --libs=thread` -ldl
+MAJOR=0
+MINOR=0
+REVISION=20100814
+VERSION=$(MAJOR).$(MINOR).$(REVISION)

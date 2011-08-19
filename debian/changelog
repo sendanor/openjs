@@ -1,0 +1,242 @@
+openjs (0.0.20101017-1) unstable; urgency=low
+
+  * added new library curl (JavaScript API for cURL)
+  * added new library ccurl (C API cURL bindings)
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 17 Oct 2010 00:48:19 +0300
+
+openjs (0.0.20101011-1) unstable; urgency=low
+
+  * Improved CGI input variable parsing
+  * Compiled against newer Google V8
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Mon, 11 Oct 2010 22:47:59 +0300
+
+openjs (0.0.20100901-1) unstable; urgency=low
+
+  * Made handling of conversion errors more robust (unknown types are converted to undefined)
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 01 Sep 2010 16:03:34 +0300
+
+openjs (0.0.20100819-1) unstable; urgency=low
+
+  * Improved sql extension
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Thu, 19 Aug 2010 19:46:54 +0300
+
+openjs (0.0.20100814-1) unstable; urgency=low
+
+  * Added Stream.readUntilEOF
+  * Added mime extension
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 14 Aug 2010 16:27:00 +0300
+
+openjs (0.0.20100807-1) unstable; urgency=low
+
+  * Added experimental SSL network library
+  * Added thread library
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 07 Aug 2010 17:29:18 +0300
+
+openjs (0.0.20100805-1) unstable; urgency=low
+
+  * Added special system.exec3 function which can be used with all streams
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Thu, 05 Aug 2010 09:03:52 +0300
+
+openjs (0.0.20100804-1) unstable; urgency=low
+
+  * Added support for string streams
+  * Added new extensions: block and timer
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 04 Aug 2010 10:36:01 +0300
+
+openjs (0.0.20100802-1) unstable; urgency=low
+
+  * Improved exceptions
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Mon, 02 Aug 2010 03:45:56 +0300
+
+openjs (0.0.20100801-1) unstable; urgency=low
+
+  * Improved exceptions
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 01 Aug 2010 08:47:44 +0300
+
+openjs (0.0.20100723-1) unstable; urgency=low
+
+  * Improved compilation error handling
+  * New build for newer Google V8
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 30 Jun 2010 17:08:58 +0300
+
+openjs (0.0.20100630-1) unstable; urgency=low
+
+  * Re-enabled cookie extension into cgi extension
+  * Added some new extensions to standard JavaScript API
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 30 Jun 2010 17:08:58 +0300
+
+openjs (0.0.20100426-1) unstable; urgency=low
+
+  * Added new jsxmlpp extension
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Mon, 26 Apr 2010 10:10:58 +0300
+
+openjs (0.0.20100412-1) unstable; urgency=low
+
+  * Splitted bloated gdome extension to smaller files to enable JIT loading of 
+    files.
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Mon, 12 Apr 2010 21:45:51 +0300
+
+openjs (0.0.20100328-1) unstable; urgency=low
+
+  * Fixed exception handling for SQL extension
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 28 Mar 2010 12:44:04 +0300
+
+openjs (0.0.20100321-1) unstable; urgency=low
+
+  * Improved Filesystem extension
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 21 Mar 2010 18:12:53 +0200
+
+openjs (0.0.20100117-1) unstable; urgency=low
+
+  * Removed dependency for libsendanor-base by including it in the source code 
+    and made it also header-only to improve performance
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 17 Jan 2010 02:21:59 +0200
+
+openjs (0.0.20100110-1) unstable; urgency=low
+
+  * Updated version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 10 Jan 2010 13:50:36 +0200
+
+openjs (0.0.20100106-1) unstable; urgency=low
+
+  * Updated project name
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 06 Jan 2010 20:16:56 +0200
+
+xsp (0.0.20091219-1) unstable; urgency=low
+
+  * Updated version number
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 19 Dec 2009 09:56:39 +0200
+
+xsp (0.0.20091113-1) unstable; urgency=low
+
+  * Working CFCGI support
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Fri, 13 Nov 2009 22:49:37 +0200
+
+xsp (0.0.20091112-1) unstable; urgency=low
+
+  * New build with newer v8
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Thu, 12 Nov 2009 02:45:50 +0200
+
+xsp (0.0.20091111-1) unstable; urgency=low
+
+  * New build with debug
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 11 Nov 2009 13:31:43 +0200
+
+xsp (0.0.20091109-1) unstable; urgency=low
+
+  * Debug version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Mon, 09 Nov 2009 15:46:40 +0200
+
+xsp (0.0.20091108-1) unstable; urgency=low
+
+  * Updated version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 08 Nov 2009 23:31:42 +0200
+
+xsp (0.0.20090912-1) unstable; urgency=low
+
+  * Updated version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 12 Sep 2009 15:20:59 +0300
+
+xsp (0.0.20090906-1) unstable; urgency=low
+
+  * Added Gdome extension
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 06 Sep 2009 15:46:12 +0300
+
+xsp (0.0.20090802-1) unstable; urgency=low
+
+  * Changed sys to system as it is in the ServerJS standard draft
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 01 Aug 2009 16:01:46 +0300
+
+xsp (0.0.20090801-1) unstable; urgency=low
+
+  * New version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 01 Aug 2009 16:01:46 +0300
+
+xsp (0.0.20090606-1) unstable; urgency=low
+
+  * New version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 06 Jun 2009 21:35:28 +0300
+
+xsp (0.0.20090517-1) unstable; urgency=low
+
+  * New version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 17 May 2009 18:50:49 +0300
+
+xsp (0.0.20090510-1) unstable; urgency=low
+
+  * New version number
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sun, 10 May 2009 19:43:48 +0300
+
+xsp (0.0.20090411-1) unstable; urgency=low
+
+  * New SVN version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 11 Apr 2009 00:02:28 +0300
+
+xsp (0.0.20090409-1) unstable; urgency=low
+
+  * New SVN version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Thu, 09 Apr 2009 19:34:56 +0300
+
+xsp (0.0.20090407-1) unstable; urgency=low
+
+  * New SVN version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Tue, 07 Apr 2009 17:30:20 +0300
+
+xsp (0.0.20090401-1) unstable; urgency=low
+
+  * New SVN version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Wed, 01 Apr 2009 00:32:05 +0300
+
+xsp (0.0.20090330-1) unstable; urgency=low
+
+  * New SVN version
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Mon, 30 Mar 2009 23:58:39 +0300
+
+xsp (0.0.20090328-1) unstable; urgency=low
+
+  * Added cgi and string libraries
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Sat, 28 Mar 2009 01:44:43 +0200
+
+xsp (0.0.20090326-1) unstable; urgency=low
+
+  * Initial release
+
+ -- Jaakko-Heikki Heusala <jheusala@sendanor.fi>  Thu, 26 Mar 2009 11:16:21 +0200

@@ -1,0 +1,81 @@
+# Sendanor -- Generic library Makefile
+# $Id: Makefile 3454 2007-10-18 16:29:54Z jheusala $
+
+all: build
+
+SRCDIR := $(shell /bin/sh -c 'set -e; dir=`pwd`; while test ! -f "$$dir/Makefile.global"; do dir="`dirname "$$dir"`"; test "x$$dir" != x/; done; echo $$dir')
+-include $(SRCDIR)/Makefile.global
+-include Makefile.local
+
+build: $(LIBNAME).a $(LIBNAME).so."$(VERSION)" subdirs-build
+
+subdirs-build: $(SUBDIRS:=-build)
+subdirs-install: $(SUBDIRS:=-install)
+subdirs-clean: $(SUBDIRS:=-clean)
+
+$(LIBNAME).a: $(SOURCES:.cc=.o) $(CSOURCES:.c=.o)
+	$(AR) rc $@ $(SOURCES:.cc=.o) $(CSOURCES:.c=.o)
+	ranlib $@
+
+$(LIBNAME).so."$(VERSION)": $(SOURCES:.cc=.o) $(CSOURCES:.c=.o)
+	$(CXX) -shared -Wl,-soname,"$(LIBNAME)".so."$(VERSION)" -o $@ $(SOURCES:.cc=.o) $(CSOURCES:.c=.o)
+	ln -s "$(LIBNAME).so.$(VERSION)" "$(LIBNAME).so"
+
+%.o: %.cc
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+%.d: %.cc
+	@set -e; $(RM) -f $@; \
+		$(CXX) -MM $(CXXFLAGS) $< > $@.$$$$.t; \
+		sed 's,\($*\)\.o[ :]*,\1.o $@ : ,g' < $@.$$$$.t > $@; \
+		$(RM) -f $@.$$$$.t
+
+clean: subdirs-clean
+	$(RM) -f *.a *.o *.so *.so.20* *.d *.t $(LIBNAME).so."$(VERSION)"
+
+-include $(SOURCES:.cc=.d)
+
+install: subdirs-install install-library install-headers
+install-library: install-$(LIBNAME).a install-$(LIBNAME).so.$(VERSION) install-$(LIBNAME).so $(addprefix install-lib-,$(INSTALL_LIBS))
+install-headers: $(addprefix install-header-,$(HEADERS))
+
+installdirs:
+	mkdir -p "$(DESTDIR)$(LIBDIR)"
+	chmod 755 "$(DESTDIR)$(LIBDIR)"
+	mkdir -p "$(DESTDIR)$(INCLUDEDIR)/$(INCLUDESUBDIR)"
+	chmod 755 "$(DESTDIR)$(INCLUDEDIR)/$(INCLUDESUBDIR)"
+
+install-$(LIBNAME).a: $(LIBNAME).a installdirs
+	cp -f "$<" "$(DESTDIR)$(LIBDIR)/$<"
+	chmod 644 "$(DESTDIR)$(LIBDIR)/$<"
+
+install-$(LIBNAME).so.$(VERSION): $(LIBNAME).so.$(VERSION) installdirs
+	cp -f "$<" "$(DESTDIR)$(LIBDIR)/$<"
+	chmod 644 "$(DESTDIR)$(LIBDIR)/$<"
+
+install-$(LIBNAME).so: installdirs
+	ln -s "$(LIBNAME).so.$(VERSION)" "$(DESTDIR)$(LIBDIR)/$(LIBNAME).so"
+
+install-header-%: % installdirs
+	cp -f "$<" "$(DESTDIR)$(INCLUDEDIR)/$(INCLUDESUBDIR)/$<"
+	chmod 644 "$(DESTDIR)$(INCLUDEDIR)/$(INCLUDESUBDIR)/$<"
+
+install-lib-%: % installdirs
+	cp -f "$<" "$(DESTDIR)$(LIBDIR)/$<.$(VERSION)"
+	chmod 644 "$(DESTDIR)$(LIBDIR)/$<.$(VERSION)"
+	ln -s "$<.$(VERSION)" "$(DESTDIR)$(LIBDIR)/$<"
+
+%-build: %
+	$(MAKE) -C $< build
+
+%-clean: %
+	$(MAKE) -C $< clean
+	rm -f "$(LIBNAME).so"
+
+%-install: %
+	$(MAKE) -C $< install
+
+# EOF

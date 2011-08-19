@@ -1,0 +1,9 @@
+SOURCES=jsxmlpp.cc
+TARGETS=jsxmlpp
+
+# libexecstream
+LDFLAGS += $(SRCDIR)/src/libexecstream/exec-stream.o
+
+tests: test-1
+
+test-1: test-1.cc jsxmlpp.h

@@ -1,0 +1,80 @@
+#!/usr/local/bin/js-cgi
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:xsp="http://www.sendanor.org/xmlns/xsp"
+      xml:lang="en">
+<head>
+	<title>XSP example using JavaScript</title>
+</head>
+<body>
+	<xsp:script type="text/javascript" src="config.js" />
+	
+	<h1>XSP example 5 -- Database</h1>
+
+	<h2>Connection test</h2>
+	<?xsp
+		var sql = new system.sql(database_config);
+	?>
+	
+	<h2>Single row test</h2>
+	<?xsp
+		var row = sql.query("SELECT COUNT(*) AS count FROM test_phonebook")[0];
+		document.write("Phonebook count is " + row[0]);
+	?>
+	<br />
+	
+	<h2>List test #1 (list all numbers)</h2>
+	<?xsp
+		
+		function print_rows(rows) {
+			if(rows.length == 0) {
+				document.write("No rows.");
+			} else {
+				for(var i in rows) {
+					document.writeln("<br />");
+					document.writeln("row[" + i + "].id=" + rows[i].id + ";<br />");
+					document.writeln("row[" + i + "].name=" + rows[i].name + ";<br />");
+					document.writeln("row[" + i + "].number=" + rows[i].number + ";<br />");
+					document.writeln("<br />");
+				}
+			}
+		}
+		
+		print_rows(sql.query("SELECT * FROM test_phonebook ORDER BY number"));
+	?>
+	
+	<h2>List test #2 (list John)</h2>
+	<?xsp
+		print_rows(sql.query("SELECT * FROM test_phonebook WHERE name=:name", "John"));
+	?>
+	
+	<h2>List test #3 (list John &amp; Lisa)</h2>
+	<?xsp
+		print_rows(sql.query("SELECT * FROM test_phonebook WHERE name=:name OR name=:name2", "John", "Lisa"));
+	?>
+	
+	<h2>Insert test</h2>
+	<?xsp
+		sql.query("INSERT INTO test_phonebook (name,number) VALUES (:name, :number)", "Peter", 45672464);
+		var id = sql.query("SELECT LAST_INSERT_ID() AS id")[0].id;
+		document.writeln("New row id was " + id);
+		print_rows(sql.query("SELECT * FROM test_phonebook ORDER BY number"));
+	?>
+	
+	<h2>Update test</h2>
+	<?xsp
+		sql.query("UPDATE test_phonebook SET name=:name, number=:number WHERE id=:id", "Bart", 89684536, id );
+		print_rows(sql.query("SELECT * FROM test_phonebook ORDER BY number"));
+	?>
+	
+	<h2>Delete test</h2>
+	<?xsp
+		sql.query("DELETE FROM test_phonebook WHERE id=:id", id );
+		print_rows(sql.query("SELECT * FROM test_phonebook ORDER BY number"));
+	?>
+	
+</body>
+</html>
