@@ -9,12 +9,12 @@ started working the day Google v8 was published -- long before [Node.js](http://
 
 Obviously since then I have moved to use Node.js. Nobody should start using 
 OpenJS for anything else but research. OpenJS still has some cool features 
-Node.js doesn't support.
+Node.js doesn't support (see threading below).
 
 Original SVN repository address: https://svn.sendanor.fi/svn/openjs/trunk
 
-OpenJS has Threads
-------------------
+Threading
+---------
 
 It has working implementation for threading for example. I haven't managed to 
 make it work with Node.js. Last time I checked it looked like it would need a 
