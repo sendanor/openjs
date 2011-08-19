@@ -7,9 +7,11 @@ Historical Note
 This is my old [Google v8](http://code.google.com/p/v8/) interpreter which I 
 started working the day Google v8 was published -- long before [Node.js](http://nodejs.org) existed.
 
-Obviously since then I have moved to use Node.js. Nobody 
-should use start using OpenJS for anything else but research. OpenJS still has 
-some cool features Node.js doesn't support.
+Obviously since then I have moved to use Node.js. Nobody should start using 
+OpenJS for anything else but research. OpenJS still has some cool features 
+Node.js doesn't support.
+
+Original SVN repository address: https://svn.sendanor.fi/svn/openjs/trunk
 
 OpenJS has Threads
 ------------------
