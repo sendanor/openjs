@@ -16,7 +16,8 @@ Original SVN repository address: https://svn.sendanor.fi/svn/openjs/trunk
 Threading
 ---------
 
-It has working implementation for threading for example. I haven't managed to 
+It has working implementation for threading for example (well, not exactly full 
+threading but almost and it doesn't block the JS code). I haven't managed to 
 make it work with Node.js. Last time I checked it looked like it would need a 
 lot rewriting of Node.js to make them work because a special feature in Google 
 v8 must be enabled which will break things if v8 thread locking is not 
